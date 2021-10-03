@@ -112,6 +112,16 @@ require("packer").startup(function(use)
   use("ms-jpq/coq_nvim")
   use("ms-jpq/coq.artifacts")
   use("ms-jpq/coq.thirdparty")
+
+
+  -- MY ADDITIONAL PLUGINS
+
+  use('Pocco81/Catppuccino.nvim')
+  use('marklcrns/vim-smartq')
+  use("mhartington/formatter.nvim")
+  use {"iamcco/markdown-preview.nvim", run = [[sh -c 'cd app && yarn install']]}
+  use('elixir-editors/vim-elixir')
+
   for _, plugin in ipairs(vim.g.kyoto_extra_plugins) do
     use(plugin)
   end

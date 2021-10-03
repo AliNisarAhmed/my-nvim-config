@@ -202,4 +202,25 @@ nnoremap <silent><leader>9 <Cmd>BufferLineGoToBuffer 9<CR>
 
 nnoremap <silent> gb :BufferLinePick<CR>
 
+
+" MY CONFIG
+" Format
+nnoremap <silent><leader>fm :Format<CR>
+" Enter newlines in Command mode 
+nnoremap <silent><A-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
+nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
+nnoremap <silent><A-S-j> m`:silent +g/\m^\s*$/d<CR>``:noh<CR>
+nnoremap <silent><A-S-k> m`:silent -g/\m^\s*$/d<CR>``:noh<CR>
+
+" Move selection up and down lines
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" Press space space to switch between last two buffers 
+nnoremap <leader><leader> <c-^>
+
+" Switch buffers with left and right arrow keys 
+nnoremap <left> :bp<cr>
+nnoremap <right> :bn<cr>
+
 command LoadPacker lua require 'pluginList'

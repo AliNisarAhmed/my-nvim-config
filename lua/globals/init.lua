@@ -1,5 +1,17 @@
 local g = vim.g
 
+---- MY CONFIG -------------------------------------------------------------------------
+g.nvim_tree_side = "right"
+g.nvim_tree_gitignore = 1
+g.nvim_tree_follow = 1
+g.nvim_tree_indent_markers = 1
+g.nvim_tree_hide_dotfiles = 0
+g.nvim_tree_git_hl = 1
+g.nvim_tree_highlight_opened_files = 1
+------------------------------------------------------------------------------------------
+
+
+
 -- Ignore for indent levels
 g.indent_blankline_filetype_exclude = {
   "help",
@@ -54,3 +66,17 @@ g.kyotorc_ui = {
 --   folders = 1,
 --   files = 1
 -- }
+
+-- g.nvim_tree_root_folder_modifier = table.concat({
+--   ":t:gs?$?/..",
+--   string.rep(" ", 1000),
+--   "?:gs?^??",
+-- })
+-- g.nvim_tree_tab_open = 0
+-- g.nvim_tree_allow_resize = 1
+-- g.nvim_tree_add_trailing = 0 -- append a trailing slash to folder names
+-- g.nvim_tree_disable_netrw = 1
+-- g.nvim_tree_hijack_netrw = 0
+-- g.nvim_tree_update_cwd = 1
+
+g.mkdp_browser = 'firefox'

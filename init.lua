@@ -24,6 +24,8 @@ local vim = vim
 vim.opt.nu = true
 vim.opt.rnu = true
 
+require('plugins.formatter')
+
 -- Global variables
 require("globals")
 -- Personal global variables
@@ -44,3 +46,15 @@ vim.cmd("source ~/.config/nvim/viml/maps.vim")
 vim.cmd("source ~/.config/nvim/viml/autocmd.vim")
 -- user configurations
 require("kyotorc")
+
+
+
+
+
+
+
+-- MY CONFIG
+-- require("plugins.formatter")
+vim.cmd("set clipboard+=unnamedplus")
+vim.cmd("set scrolloff=10")
+vim.cmd("set ignorecase smartcase")

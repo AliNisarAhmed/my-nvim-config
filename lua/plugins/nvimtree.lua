@@ -8,7 +8,8 @@ end
 
 local tree_cb = tree_c.nvim_tree_callback
 
-g.nvim_tree_ignore = { ".git", "node_modules", ".cache" }
+g.nvim_tree_side = 'right'
+g.nvim_tree_ignore = {}
 g.nvim_tree_gitignore = 1
 g.nvim_tree_auto_ignore_ft = { "dashboard" } -- don't open tree on specific fiypes.
 g.nvim_tree_auto_open = 0
@@ -16,9 +17,9 @@ g.nvim_tree_auto_close = 0 -- closes tree when it's the last window
 g.nvim_tree_quit_on_open = 0 -- closes tree when file's opened
 g.nvim_tree_follow = 1
 g.nvim_tree_indent_markers = 1
-g.nvim_tree_hide_dotfiles = 1
+g.nvim_tree_hide_dotfiles = 0
 g.nvim_tree_git_hl = 1
-g.nvim_tree_highlight_opened_files = 0
+g.nvim_tree_highlight_opened_files = 1
 g.nvim_tree_root_folder_modifier = table.concat({
   ":t:gs?$?/..",
   string.rep(" ", 1000),
