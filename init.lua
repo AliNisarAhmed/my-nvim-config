@@ -1,5 +1,23 @@
+--          _/_
+--        -'a\\
+--          ||
+--          |J
+--          2_\\
+--         /:::\\
+--        |;ooo;|
+--        /Oo@ o\\
+--       '/o oOo\\`
+--       /@ O o @\\
+--      '/.o,()o,\\`
+--      /().O O  o\\
+--     / @ , @. () \\
+--    /,o O' o O o, \\
+-- _-'. 'o _o _O_o-o.`-_
+-- `"""---......---"""`
+--  K Y O T O    N V I M
+-- https://github.com/samrath2007/kyoto.nvim
+
 local vim = vim
-local g = vim.g
 
 -- line-numbers must be declared before dashboard
 -- init because otherwise dashboard shows line numbers
@@ -8,7 +26,12 @@ vim.opt.rnu = true
 
 g.solarized_termcolor=256
 
+-- Global variables
 require("globals")
+-- Personal global variables
+pcall(require, "personal-globals")
+
+
 require("plugins.dashboard-config")
 
 require("plugins.formatter")
@@ -17,22 +40,20 @@ require("plugins.formatter")
 require("plugins.compe-config")
 -- Langauge server configuration
 require("lsp-config")
+
+----------------------------
+
+----------------------------------------
 -- general configurations
 require("options")
--- lualine configuration
-require("plugins.statusline")
--- nvim-bufferline.lua configuration
-require("plugins.top-bufferline")
--- fuzzy finder configuration
-require("plugins.telescope-config")
--- Git changes(showing in line number) configuration
-require("plugins.gitsigns-config")
--- configuration to help you remember keybindings
-require("plugins.which-key-config")
--- nvim tree
-require("plugins.nvimtree-config")
--- extra plugins(with shorter configs)
-require("plugins.misc")
+-- Plugin configurations
+require("plugins")
+-- Colors
+require("colors.highlights")
+-- Langauge server configuration
+require("lsp-config")
+-- Plugin configurations
+require("plugins")
 -- source our mappings last(may change)
 vim.cmd("source ~/.config/nvim/viml/maps.vim")
 -- auto-commands
@@ -42,3 +63,4 @@ vim.cmd("set clipboard+=unnamedplus")
 vim.cmd("set scrolloff=10")
 vim.cmd("set ignorecase smartcase")
 pcall(require, "kyotorc")
+require("kyotorc")

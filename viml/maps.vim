@@ -1,7 +1,11 @@
+" Make tab and shift tab navigate autocomplete menus
+inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+
 " Go to the beginning of the line in insert mode
 inoremap <silent><C-a> <C-o>0
 " Go to the ending of the line in insert mode
-inoremap <silent><C-b> <C-o>$
+inoremap <silent><C-z> <C-o>$
 " Paste from the system clipboard(in normal mode)
 nnoremap <silent><leader>y "*y
 " Paste from the system clipboard(in visual mode)
@@ -53,7 +57,7 @@ cnoreabbrev B buffer
 
 " Change buffer sizes
 "
-" Make uffer narrower
+" Make buffer narrower
 nnoremap <silent> <C-H> :vertical resize -4<CR>
 " Make buffer wider
 nnoremap <silent> <C-L> :vertical resize +4><CR>
@@ -70,8 +74,10 @@ tnoremap <silent> <C-K> :resize +4<CR>
 
 " Create/Toggle a terminal to the bottom
 nnoremap <silent><leader>` :call ChooseTerm("term-slider", 1)<CR>
+tnoremap <silent><leader>` <C-\><C-n>:call ChooseTerm("term-slider", 1)<CR>
 " Create/Toggle a terminal in a buffer
 nnoremap <silent><leader><CR> :call ChooseTerm("term-pane", 0)<CR>
+tnoremap <silent><leader><CR> <C-\><C-n>:call ChooseTerm("term-pane", 0)<CR>
 
 " Terminal Toggle
 function! ChooseTerm(termname, slider)
@@ -101,7 +107,7 @@ function! ChooseTerm(termname, slider)
 endfunction
 
 " Goto private config
-nnoremap <silent><leader>dc :e ~/.config/nvim/lua/kyotorc/init.lua<CR>
+nnoremap <silent><leader>kc :e ~/.config/nvim/lua/kyotorc/init.lua<CR>
 
 " Telescope
 " Fuzzy file finder
@@ -139,6 +145,19 @@ inoremap <silent><expr> <C-d> compe#scroll({ 'delta': -4 })
 
 " Lspsaga
 " Symobols Finder
+" NEW SETTINGS --------------------------------------------
+" Fuzzy command finder
+nnoremap <silent><leader>fc :Telescope commands<CR>
+" Fuzzy current file word finder
+nnoremap <silent><leader>fz :Telescope current_buffer_fuzzy_find<CR>
+" Fuzzy workspace symbols
+nnoremap <silent><leader>fs :Telescope lsp_workspace_symbols<CR>
+" Search projects (projects.nvim)
+nnoremap <silent><leader>fp :Telescope projects<CR>
+
+"Lspsaga mappinggs
+" Symbols Finder
+" NEW SETTINGS END -----------------------------------------
 nnoremap <silent> gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
 " Show code actions
 nnoremap <silent><leader>ca <cmd>lua require('lspsaga.codeaction').code_action()<CR>
@@ -151,7 +170,7 @@ nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_sag
 " Scroll up in lspsaga menus
 nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
 " Show signature help(imo not thaat useful)
-nnoremap <silent> gs <cmd>lua require('lsopsaga.signaturehelp').signature_help()<CR>
+nnoremap <silent> gs <cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>
 " Rename symbols
 nnoremap <silent>gr <cmd>lua require('lspsaga.rename').rename()<CR>
 " Preview definition
@@ -169,8 +188,9 @@ nnoremap <silent> gD <cmd>lua vim.lsp.buf.definition()<CR>
 
 " Toggle error menu
 nnoremap <silent><leader>h :TroubleToggle<CR>
+
 " Show symbols outline
-nnoremap <silent><leader>so :SymbolsOutline<CR>
+nnoremap <silent><leader>so :Vista nvim_lsp<CR>
 " Show blame for line
 nnoremap <silent><leader>bb :Gitsigns toggle_current_line_blame<CR>
 
@@ -180,7 +200,7 @@ nnoremap <silent><leader>/ :Commentary<CR>
 vnoremap <silent><leader>/ :Commentary<CR>
 
 
-" Enter newlines in Command mode 
+" Enter newlines in Command mode
 nnoremap <silent><A-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 nnoremap <silent><A-S-j> m`:silent +g/\m^\s*$/d<CR>``:noh<CR>
@@ -190,10 +210,10 @@ nnoremap <silent><A-S-k> m`:silent -g/\m^\s*$/d<CR>``:noh<CR>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-" Press space space to switch between last two buffers 
+" Press space space to switch between last two buffers
 nnoremap <leader><leader> <c-^>
 
-" Switch buffers with left and right arrow keys 
+" Switch buffers with left and right arrow keys
 nnoremap <left> :bp<cr>
 nnoremap <right> :bn<cr>
 
@@ -203,23 +223,31 @@ nnoremap <right> :bn<cr>
 " noremap <C-w>z <C-w>\|<C-w>\_
 
 function! ToggleNvimTree()
-  if exists(":NvimTreeToggle") == 0
-    " lazy load nvim-tree
-    silent! packadd nvim-tree.lua
-  endif
+   if exists(":NvimTreeToggle") == 0
+     " lazy load nvim-tree
+     silent! packadd nvim-tree.lua
+   endif
 
-  NvimTreeToggle
-endfunction
+   NvimTreeToggle
+ endfunction
 
 " Call nvim-tree lazy load function
-nnoremap <silent> <leader>nn :call ToggleNvimTree()<CR>
+nnoremap <silent> <leader>n :call ToggleNvimTree()<CR>
 
-"Open lazgit
+"Open lazygit
 nnoremap <silent> <leader>lg :LazyGit<CR>
 
-" Wilder Search
-cmap <expr> <Tab> wilder#in_context() ? wilder#next() : "\<Tab>"
-" Wilder iterate through results
-cmap <expr> <S-Tab> wilder#in_context() ? wilder#previous() : "\<S-Tab>"
+nnoremap <silent><leader>1 <Cmd>BufferLineGoToBuffer 1<CR>
+nnoremap <silent><leader>2 <Cmd>BufferLineGoToBuffer 2<CR>
+nnoremap <silent><leader>3 <Cmd>BufferLineGoToBuffer 3<CR>
+nnoremap <silent><leader>4 <Cmd>BufferLineGoToBuffer 4<CR>
+nnoremap <silent><leader>5 <Cmd>BufferLineGoToBuffer 5<CR>
+nnoremap <silent><leader>6 <Cmd>BufferLineGoToBuffer 6<CR>
+nnoremap <silent><leader>7 <Cmd>BufferLineGoToBuffer 7<CR>
+nnoremap <silent><leader>8 <Cmd>BufferLineGoToBuffer 8<CR>
+nnoremap <silent><leader>9 <Cmd>BufferLineGoToBuffer 9<CR>
+
+
+nnoremap <silent> gb :BufferLinePick<CR>
 
 command LoadPacker lua require 'pluginList'

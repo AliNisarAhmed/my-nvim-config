@@ -1,5 +1,4 @@
 local vim = vim
-local g = vim.g
 local opt = vim.opt
 
 opt.ruler = true
@@ -24,6 +23,7 @@ opt.foldmethod = "manual"
 vim.cmd("set wildcharm=<Tab>")
 
 vim.cmd("colorscheme catppuccino")
+-- vim.cmd("colorscheme tokyonight")
 
 local disabled_built_ins = {
   "netrw",
