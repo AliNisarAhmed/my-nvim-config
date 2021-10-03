@@ -2,7 +2,22 @@ local vim = vim
 
 require("packer").startup(function(use)
   use("wbthomason/packer.nvim")
-  use({ "kyazdani42/nvim-tree.lua", opt = true, cmd = { "NvimTreeToggle" } })
+
+  use {
+    'kyazdani42/nvim-tree.lua',
+    requires = 'kyazdani42/nvim-web-devicons',
+    config = function()
+      require('nvim-tree').setup({
+        update_focused_file = {
+          -- enables the feature
+          enable = true,
+        },
+        view = {
+          side = 'right'
+        }
+      })
+    end
+  }
 
   use("glepnir/lspsaga.nvim")
   use("kabouzeid/nvim-lspinstall")

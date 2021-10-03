@@ -180,7 +180,7 @@ nnoremap <silent><leader>/ :Commentary<CR>
 vnoremap <silent><leader>/ :Commentary<CR>
 
 
-" Enter newlines in Command mode 
+" Enter newlines in Command mode
 nnoremap <silent><A-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
 nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
 nnoremap <silent><A-S-j> m`:silent +g/\m^\s*$/d<CR>``:noh<CR>
@@ -190,10 +190,10 @@ nnoremap <silent><A-S-k> m`:silent -g/\m^\s*$/d<CR>``:noh<CR>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-" Press space space to switch between last two buffers 
+" Press space space to switch between last two buffers
 nnoremap <leader><leader> <c-^>
 
-" Switch buffers with left and right arrow keys 
+" Switch buffers with left and right arrow keys
 nnoremap <left> :bp<cr>
 nnoremap <right> :bn<cr>
 
@@ -202,17 +202,9 @@ nnoremap <right> :bn<cr>
 " Maximize markdow preview
 " noremap <C-w>z <C-w>\|<C-w>\_
 
-function! ToggleNvimTree()
-  if exists(":NvimTreeToggle") == 0
-    " lazy load nvim-tree
-    silent! packadd nvim-tree.lua
-  endif
-
-  NvimTreeToggle
-endfunction
 
 " Call nvim-tree lazy load function
-nnoremap <silent> <leader>nn :call ToggleNvimTree()<CR>
+nnoremap <silent> <leader>n :NvimTreeToggle<CR>
 
 "Open lazgit
 nnoremap <silent> <leader>lg :LazyGit<CR>
