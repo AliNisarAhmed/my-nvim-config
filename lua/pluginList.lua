@@ -57,7 +57,11 @@ require("packer").startup(function(use)
     "kyazdani42/nvim-tree.lua",
     requires = "kyazdani42/nvim-web-devicons",
     config = function()
-      require("nvim-tree").setup({})
+      require("nvim-tree").setup({
+        view = {
+          side = 'right'
+        }
+      })
     end,
   })
   use("tami5/lspsaga.nvim")
@@ -110,7 +114,7 @@ require("packer").startup(function(use)
   })
 
   use("ms-jpq/coq_nvim")
-  use("ms-jpq/coq.artifacts")
+  -- use("ms-jpq/coq.artifacts")
   use("ms-jpq/coq.thirdparty")
 
 
