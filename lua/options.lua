@@ -2,7 +2,7 @@ local vim = vim
 local g = vim.g
 local opt = vim.opt
 
-opt.ruler = false
+opt.ruler = true
 opt.hidden = true
 opt.ignorecase = true
 opt.splitbelow = true
@@ -23,7 +23,7 @@ opt.pumheight = 20
 opt.foldmethod = "manual"
 vim.cmd("set wildcharm=<Tab>")
 
-vim.cmd("colorscheme tokyonight")
+vim.cmd("colorscheme catppuccino")
 
 local disabled_built_ins = {
   "netrw",

@@ -10,6 +10,8 @@ require("packer").startup(function(use)
   use("hrsh7th/nvim-compe")
   use("neovim/nvim-lspconfig")
   use("folke/tokyonight.nvim")
+  use('Pocco81/Catppuccino.nvim')
+  use({ 'rose-pine/neovim', as = 'rose-pine' })
   use({
     "hoob3rt/lualine.nvim",
     requires = { "kyazdani42/nvim-web-devicons", opt = true },
@@ -19,6 +21,8 @@ require("packer").startup(function(use)
     "nvim-telescope/telescope.nvim",
     requires = { { "nvim-lua/popup.nvim" }, { "nvim-lua/plenary.nvim" } },
   })
+
+  use('marklcrns/vim-smartq')
 
   use({
     "akinsho/nvim-bufferline.lua",
@@ -57,10 +61,7 @@ require("packer").startup(function(use)
   use("tpope/vim-commentary")
   use("kdheepak/lazygit.nvim")
   use("yuttie/comfortable-motion.vim")
-  use({
-    "mhartington/formatter.nvim",
-    opt = true,
-  })
+  use("mhartington/formatter.nvim")
   use({
     "folke/twilight.nvim",
     opt = true,
@@ -81,6 +82,10 @@ require("packer").startup(function(use)
   use({ "creativenull/diagnosticls-nvim", opt = true })
 
   use({ "folke/lua-dev.nvim", opt = true })
+
+  use {"iamcco/markdown-preview.nvim", run = [[sh -c 'cd app && yarn install']]}
+
+  use('elixir-editors/vim-elixir')
 
   for _, plugin in ipairs(vim.g.kyoto_extra_plugins) do
     use(plugin)

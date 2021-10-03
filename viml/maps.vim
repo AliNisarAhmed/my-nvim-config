@@ -27,7 +27,7 @@ nnoremap <silent> <C-C> :if (&hlsearch == 1) \| set nohlsearch \| else \| set hl
 " Do not make Q go to ex-mode
 nnoremap Q <Nop>
 
-" Wrap selection with '' 
+" Wrap selection with ''
 vnoremap <leader>' <esc>`>a'<esc>`<i'<esc>
 " Wrap selection with ""
 vnoremap <leader>" <esc>`>a"<esc>`<i"<esc>
@@ -51,7 +51,7 @@ cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev B buffer
 
-" Change buffer sizes 
+" Change buffer sizes
 "
 " Make uffer narrower
 nnoremap <silent> <C-H> :vertical resize -4<CR>
@@ -70,7 +70,7 @@ tnoremap <silent> <C-K> :resize +4<CR>
 
 " Create/Toggle a terminal to the bottom
 nnoremap <silent><leader>` :call ChooseTerm("term-slider", 1)<CR>
-" Create/Toggle a terminal in a buffer 
+" Create/Toggle a terminal in a buffer
 nnoremap <silent><leader><CR> :call ChooseTerm("term-pane", 0)<CR>
 
 " Terminal Toggle
@@ -82,7 +82,7 @@ function! ChooseTerm(termname, slider)
         if a:slider > 0
             :exe pane . "wincmd c"
         else
-            :exe "e #" 
+            :exe "e #"
         endif
     elseif buf > 0
         " buffer is not in pane
@@ -116,6 +116,8 @@ nnoremap <silent><leader>fi :Telescope live_grep<CR>
 nnoremap <silent><leader>fg :Telescope git_status<CR>
 " Fuzzy old-files finder
 nnoremap <silent><leader>fo :Telescope oldfiles<CR>
+" Format
+nnoremap <silent><leader>fm :Format<CR>
 
 " Open floating terminal
 nnoremap <leader>to :lua require('lspsaga.floaterm').open_float_terminal()<CR>
@@ -176,6 +178,29 @@ nnoremap <silent><leader>bb :Gitsigns toggle_current_line_blame<CR>
 nnoremap <silent><leader>/ :Commentary<CR>
 " Toggle comment for selections
 vnoremap <silent><leader>/ :Commentary<CR>
+
+
+" Enter newlines in Command mode 
+nnoremap <silent><A-j> :set paste<CR>m`o<Esc>``:set nopaste<CR>
+nnoremap <silent><A-k> :set paste<CR>m`O<Esc>``:set nopaste<CR>
+nnoremap <silent><A-S-j> m`:silent +g/\m^\s*$/d<CR>``:noh<CR>
+nnoremap <silent><A-S-k> m`:silent -g/\m^\s*$/d<CR>``:noh<CR>
+
+" Move selection up and down lines
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" Press space space to switch between last two buffers 
+nnoremap <leader><leader> <c-^>
+
+" Switch buffers with left and right arrow keys 
+nnoremap <left> :bp<cr>
+nnoremap <right> :bn<cr>
+
+" Open Markdown preview of the currently focused markdown file
+" noremap <leader>fp :Glow<CR>
+" Maximize markdow preview
+" noremap <C-w>z <C-w>\|<C-w>\_
 
 function! ToggleNvimTree()
   if exists(":NvimTreeToggle") == 0

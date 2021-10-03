@@ -6,8 +6,12 @@ local g = vim.g
 vim.opt.nu = true
 vim.opt.rnu = true
 
+g.solarized_termcolor=256
+
 require("globals")
 require("plugins.dashboard-config")
+
+require("plugins.formatter")
 
 -- autocomplete configuration
 require("plugins.compe-config")
@@ -34,4 +38,7 @@ vim.cmd("source ~/.config/nvim/viml/maps.vim")
 -- auto-commands
 vim.cmd("source ~/.config/nvim/viml/autocmd.vim")
 -- user configurations
+vim.cmd("set clipboard+=unnamedplus")
+vim.cmd("set scrolloff=10")
+vim.cmd("set ignorecase smartcase")
 pcall(require, "kyotorc")
